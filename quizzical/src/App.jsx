@@ -11,8 +11,11 @@ function App() {
   const [questions, setQuestions] = useState([])
   const [checked, setChecked] = useState(true)
   const [count, setCount] = useState(0)
+  const shuffleArray = (arr) => arr.sort(() => Math.random() -0.5) //shuffle incorrect answers
+  const [correct, setCorrect] = useState(true)
 
 
+  //update state fetching data from open source API
   useEffect(() => {
     fetch('https://opentdb.com/api.php?amount=10&category=21&encode=base64')
     .then(res => res.json())
@@ -21,7 +24,7 @@ function App() {
     let myQuestions = []
     myQuestions.push({id:nanoid(), question:question.question, correct:question.correct_answer, 
     answers:shuffleArray([question.incorrect_answers])})
-  }, [])
+  }, [count])
 
   //updating the questions to new state 
   function handleClickAnswer(id, answers){
@@ -35,6 +38,18 @@ function App() {
     setCount(count => count + 1)
     setChecked(false)
   }
+
+  //updating state of choice in answers
+  setCorrect(correct)
+  questions.forEach(question => {
+    if(question.selected === null){
+      selected = false
+      return
+    }
+  })
+    if(!selected){
+      return
+    }
 
   //a variable that will map over a component
 const questionElement = question ? question.map(question => {
