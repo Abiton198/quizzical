@@ -3,8 +3,6 @@ import { nanoid } from "nanoid";
 
 export default function Question(props) {
     let answers = props.myQuestion.answers
-
-    
     function handleClick(answer){
         if (props.myQuestion.checked){
             return question.id === id ? {...question, selected:answers} : question
@@ -39,24 +37,6 @@ export default function Question(props) {
         <div className='questions-container'>
             <h3 className='questions'>{atob(props.myQuestion.question)}</h3>
         {answersElement}
-        </div>
-    )
-
-
-
-
-
-
-
-
-    return (
-        <div className="container-quiz">
-        
-        
-        
-        
-        
-        
         </div>
     )
 }
